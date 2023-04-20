@@ -78,6 +78,14 @@ class MainActivity : AppCompatActivity() {
         //Eger onCreate isleminde hatali bi cagirim yaparsak uygulama cokuyor
         //Video 7
 
+        var arrList1= arrayListOf<String>("Selami","Hasooo", "Piccaso")
+        println(arrList1[0])
+        arrList1.add("FezokuOnr")
+        arrList1.add("Fezo")
+        arrList1.add("Herren")
+        arrList1.add("Serbest")
+
+        var arrListAll= arrayListOf<Any>(1,"asdasd",'@')
 
     }
 }
