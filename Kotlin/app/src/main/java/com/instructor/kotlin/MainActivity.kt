@@ -87,5 +87,41 @@ class MainActivity : AppCompatActivity() {
 
         var arrListAll= arrayListOf<Any>(1,"asdasd",'@')
 
+        var arrList1Cln=arrList1.clone()
+
+        // Video 8
+        //Set-HashSet
+        println("Set-HashSet")
+
+        //??Neden setleri val olarak create ediyoruz var olarak yapmiyoruz
+        var myHashSett = HashSet<Any>()
+
+        val mySet= setOf<Int>(3,5,7,5,5,7,8)
+        println(mySet.size)
+
+        myHashSett.add("Ogretmen")
+        myHashSett.add(123)
+        myHashSett.forEach {println(it)}
+
+
+        //Video 9
+        println("Map-HashMap")
+
+        var isimArr= arrayOf<String>("Ali","Mehmet","Selami","Fezoku")
+        var maasArr= arrayOf<Int>(9000,5000,5006,6004)
+
+        println("${isimArr[0]} ${maasArr[0]}")
+
+        var isimMap= HashMap<String,Int>()
+
+        isimMap.put("Ali",3500)
+        isimMap.put ("Mehmet",9880)
+
+        println(isimMap["Ali"])
+
+        var myHashMap= hashMapOf<String,Int>("Ozan" to 10,"Mehmet" to 90)
+        println(myHashMap["Ozan"])
+
+
     }
 }
