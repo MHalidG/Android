@@ -122,6 +122,81 @@ class MainActivity : AppCompatActivity() {
         var myHashMap= hashMapOf<String,Int>("Ozan" to 10,"Mehmet" to 90)
         println(myHashMap["Ozan"])
 
+        //Video 10
+        println("Operatorler")
+
+        //++
+        //--
+        //<
+        //>
+        //<= >=
+        //==
+        //!=
+        //&& ve. || veya
+
+        var i=3
+        i= i+1
+        println(i)
+        i++
+        i++
+        println(i)
+
+        //% mod operatoru ayni java ile
+
+        //Video 11
+        println("If Else")
+        val s1=70
+        val s2=80
+        val s3=90
+
+        val ortalama=(s1+s2+s3)/3
+        if(ortalama<=50){println("Kaldin len Saf")}
+        else if(ortalama<=70){
+            println("Len vasat ortalama adam seni")
+        }else if(ortalama <=100){
+            println("Helellen kerata aferim")
+        }else{
+            println("Olum Uyumsuzsun sen he")
+        }
+
+        //Video 12
+        println("When(Switch)")
+
+        var gun=1
+        var gunStr="Bos"
+        when(gun){
+            1-> gunStr="Pazartesi"
+            2-> gunStr="Sali"
+            3-> gunStr="Crs"
+            else -> gunStr="Bir gun iste"
+        }
+
+        //Video 13
+        println("For loop")
+
+        val names =ArrayList<String>()
+        names.add("Halid")
+        names.add("Fezoku")
+        names.add("Cihangir")
+        names.add("Aysenur")
+        names.add("Cihat")
+
+        for(String in names){
+            println(String)
+        }
+
+        names.forEach{println(it)}
+
+        //for(i:Int in 1..10) println(i)
+        //for(i:Int in 1 until 10) println(i)
+        //for(i:Int in 10 downTo 1) println(i)
+        //for(i:Int in 10 downTo 1 step 2) println(i)
+        //for(i:Int in 1.rangeTo(10).step(2)) println(i)
+
+        for(i:Char in 'a'..'z') println(i)
+
+        println("While Loop")
+
 
     }
 }
