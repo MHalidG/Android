@@ -2,11 +2,19 @@ package com.instructor.kotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import com.instructor.kotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
+        binding= ActivityMainBinding.inflate(layoutInflater)
+
+        val view =binding.root
+        setContentView(view)
 
     //Video 1
     // on Create methodun icine yazdigimiz hersey uygulama baslamadan once logcat kisminda gozukur
@@ -42,6 +50,18 @@ class MainActivity : AppCompatActivity() {
         var bas="kelam"
     println("SELAMUN ALEYKum $sas $bas Origin bir ozellikmis hea")
     println("SELAMUN ALEYKum $sas ${bas.uppercase()} Origin bir ozellikmis hea")
+
+        //Burasi onemli. Atama yapilinca direk integr olarak define ediyor/
+        //var benimLongum=100
+
+        var benimLongum:Long=100
+        benimLongum=633333333333333
+        var benimInt=1000
+        var benimLongaCevrilenIntim=benimInt.toLong()
+        var isimm="50"
+
+        var isimdenInte=isimm.toInt();
+
 
         val isim : String
         //isim=123
@@ -197,6 +217,61 @@ class MainActivity : AppCompatActivity() {
 
         println("While Loop")
 
+        var w=0
+        while (w<10){
+            println(w)
+            w++
+        }
 
+
+
+        fun degistir(view  : View){
+
+
+        }
+
+            //textView.text = "Merhaba Android"
+            //Burada bir hata ile karsilastik Artik Kotlin Android Extensions desteklenmiyormus
+            //Bu rehberden yeni yolu ogrendim View Binding  https://www.youtube.com/watch?v=MW_IQkZEf1A
+
+            /*buildFeatures{
+                    viewBinding true
+                }
+           Adim 1 Yukaridaki eklendiyi build gradle module de andoridin altina yazdik
+
+          Adim 2  Asagidaki blokta cift yildizli olan yerleri degistirdik
+
+
+        lateinit var binding: ActivityMainBinding**
+        override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        //setContentView(R.layout.activity_main)**
+        binding= ActivityMainBinding.inflate(layoutInflater)**
+        val view =binding.root**
+        setContentView(view)**
+
+                Adim 3 : Butun bu islemerli yaptiktan sonra binding objesi uzerinden Idlere ulasabiliyoruz
+
+                */
+        cikarma(5,9)
+        firstFunc()
     }
+
+    fun firstFunc(){
+        println("First Function Was Runned")
+    }
+
+    fun cikarma(x:Int,y: Int): String{
+        binding.textView2.text="Sonuc ${x-y}"
+
+    return "Selami Amcaaa"
+    }
+/*
+    fun degistir(view : View){
+        val cikarmaSonuc=cikarma(60,70)
+        binding.textView2.text="Sonuc ${cikarmaSonuc}"
+
+    }*/
+
 }
