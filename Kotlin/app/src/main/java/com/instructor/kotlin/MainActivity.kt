@@ -259,7 +259,7 @@ class MainActivity : AppCompatActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //setContentView(R.layout.activity_main)**
+        //setContentView(R.layout.activity_main)**(Bu satir yorum haline alindi)
         binding= ActivityMainBinding.inflate(layoutInflater)**
         val view =binding.root**
         setContentView(view)**
@@ -310,6 +310,45 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun nullGuvenligi(){
+    //Null, Nullability, Null Safety
+
+        //Tanilama, Definening
+        var benimStr:String?
+
+        //Initialization
+        benimStr="Halid"
+        var benimInt: Int?=null
+        //Null degerini direk atamak gerekiyor nullability ayarlarken
+
+        //var benimYas:Int?=null
+        //println(benimYas*2)
+
+        //Nullable Kontrol Methodlari
+
+        //1
+        if(benimStr!=null){
+            println(benimStr)
+        }else{
+            println("Null Geldi")
+        }
+
+        //2
+        //!! -> Null Olmayacak   ? -> Null olabilir
+        println(benimInt!!.minus(2))
+
+        //3
+        //Elvis Operatoru
+        val sonuc=benimInt?.minus(2) ?:10
+        //Eger gelen sayi null sa otomatik olarak 10 degerini alacagiz
+        println(sonuc)
+
+        //4
+        //let
+        //Eger null degilsem birak beni islemi yapayim
+        benimInt?.let {
+            println(it*5)
+        }
+
 
 
     }

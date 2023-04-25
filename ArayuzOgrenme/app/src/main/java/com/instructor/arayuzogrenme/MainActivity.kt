@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //Layout Cesitleri
+        //Layout icinde layout kullanilabilir tektip olmak zorunda degil
 
         //1-Constrait layout
         /*En sik kullanilan layout turu. En serbest calisma imkanini bu veriyor
@@ -24,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         4-FrameLayout Tek resim kullanacagimiz zaman kullaniyoruz
 
         5-Grid Layout
+        indiriyoruz oncelikle gradle module app de dependencies altinda implemente oluyor
+        layout_row(sira)
+        layout_column(sutun)
+
+
 
 
          */
