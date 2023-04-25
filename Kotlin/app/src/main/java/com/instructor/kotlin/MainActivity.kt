@@ -16,6 +16,19 @@ class MainActivity : AppCompatActivity() {
         val view =binding.root
         setContentView(view)
 
+        binding.button.setOnClickListener {
+            val cikarmaSnc=cikarma(80,88)
+            binding.textView2.text="Sonuc ${cikarmaSnc}"
+        }
+
+
+        var superman=SuperKahraman("Superman",50,"Gazeteci")
+        binding.textView2.text="Yas: ${superman.yas}"
+
+        superman.testFunction()
+
+        nullGuvenligi()
+
     //Video 1
     // on Create methodun icine yazdigimiz hersey uygulama baslamadan once logcat kisminda gozukur
 /*
@@ -261,11 +274,15 @@ class MainActivity : AppCompatActivity() {
     fun firstFunc(){
         println("First Function Was Runned")
     }
-
+/*
     fun cikarma(x:Int,y: Int): String{
         binding.textView2.text="Sonuc ${x-y}"
 
     return "Selami Amcaaa"
+    }*/
+
+    fun cikarma(x:Int,y: Int): Int{
+        return x-y
     }
 /*
     fun degistir(view : View){
@@ -273,5 +290,30 @@ class MainActivity : AppCompatActivity() {
         binding.textView2.text="Sonuc ${cikarmaSonuc}"
 
     }*/
+
+    fun sinifCalismasi(){
+        var numara=5
+        var selami: Int=9
+        var isim="Superman"
+        var meslek="Gazeteci"
+        var yas=50
+
+        var SpiiderMan="Spiderman"
+        var spiderMeslek="Gazeteci"
+        var SpidermanYas=20
+       /* var spiderman=SuperKahraman()
+        spiderman.isim="SpiderMan"
+        spiderman.meslek="Gazeteci"
+        spiderman.yas=50
+*/
+
+    }
+
+    fun nullGuvenligi(){
+
+
+    }
+
+
 
 }
