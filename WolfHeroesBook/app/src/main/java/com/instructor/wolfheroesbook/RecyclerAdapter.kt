@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.instructor.wolfheroesbook.databinding.RecyclerRowBinding
 
-class RecyclerAdapter (val alfalarListesi: ArrayList<String>,val kahramanGorselleri:ArrayList<Bitmap>)
+class RecyclerAdapter (val alfalarListesi: ArrayList<String>,val kahramanGorselleri:ArrayList<Int>)
     :RecyclerView.Adapter<RecyclerAdapter.AlfalarVH>() {
 
     lateinit var binding :RecyclerRowBinding
@@ -36,10 +36,15 @@ class RecyclerAdapter (val alfalarListesi: ArrayList<String>,val kahramanGorsell
         holder.itemView.setOnClickListener {
             val intent= Intent(holder.itemView.context,TanitimActivity::class.java)
             intent.putExtra("kahramaninIsmi",alfalarListesi.get(position))
+            intent.putExtra("alfaGorselleri",kahramanGorselleri.get(position))
             //Intentle kucuk veriler gonderilir/ 400-500kb buyuk veri sayilir
 
+
+           /*
             val singleton=SingletonClass.SecilenKahraman
             singleton.gorsel=kahramanGorselleri.get(position)
+            */
+
             holder.itemView.context.startActivity(intent)
 
 

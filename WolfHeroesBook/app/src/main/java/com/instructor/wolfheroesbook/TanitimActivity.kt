@@ -1,5 +1,6 @@
 package com.instructor.wolfheroesbook
 
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.instructor.wolfheroesbook.databinding.ActivityMainBinding
@@ -18,10 +19,14 @@ class TanitimActivity : AppCompatActivity() {
         val secilanKahraman=intent.getStringExtra("kahramaninIsmi")
         binding.textView.text=secilanKahraman
 
+        val secilenKahramanGorseli=intent.getIntExtra("alfaGorselleri",0)
+        val bitmap=BitmapFactory.decodeResource(applicationContext.resources,secilenKahramanGorseli)
+        binding.imageView.setImageBitmap(bitmap)
+        /*
         val secilenKahraman=SingletonClass.SecilenKahraman
         val secilenGorsel=secilenKahraman.gorsel
         binding.imageView.setImageBitmap(secilenGorsel)
-
+*/
 
 
 

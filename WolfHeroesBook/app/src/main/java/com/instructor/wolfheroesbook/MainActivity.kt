@@ -1,7 +1,5 @@
 package com.instructor.wolfheroesbook
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         //Verimsiz tanimlamalar
         //Gorselleri internetten indirirken de veri olarak indiriyoruz pc onu gorsele ceviriyor
         //Biz de burda veriyi Variablea atiyoruz/
-
+/*
         val leaderBitMap=BitmapFactory.decodeResource(applicationContext.resources, R.drawable.cihangir)
         val melikBitMap=BitmapFactory.decodeResource(applicationContext.resources, R.drawable.malik)
         val kurtBitMap=BitmapFactory.decodeResource(applicationContext.resources, R.drawable.kurt)
@@ -46,6 +44,23 @@ class MainActivity : AppCompatActivity() {
         alfalarGorsel.add(qiraBitMap)
         alfalarGorsel.add(cahitBitMap)
 
+*/
+        //Verimli Tanimlamalar
+        val leaderDrawableId=R.drawable.cihangir
+        val malikDrawableId=R.drawable.malik
+        val kurtDrawableId=R.drawable.kurt
+        val qiraDrawableId=R.drawable.qira
+        val cahitDrawableId=R.drawable.cahit
+
+        var alfalarDrawableListesi=ArrayList<Int>()
+
+        alfalarDrawableListesi.add(leaderDrawableId)
+        alfalarDrawableListesi.add(malikDrawableId)
+        alfalarDrawableListesi.add(kurtDrawableId)
+        alfalarDrawableListesi.add(qiraDrawableId)
+        alfalarDrawableListesi.add(cahitDrawableId)
+
+
 
         //Adapter
 
@@ -54,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         val layoutManager=LinearLayoutManager(this)
         binding.recyclerView.layoutManager=layoutManager
 
-        val adapter=RecyclerAdapter(alfalar,alfalarGorsel)
+        val adapter=RecyclerAdapter(alfalar,alfalarDrawableListesi)
         binding.recyclerView.adapter=adapter
 
     }
