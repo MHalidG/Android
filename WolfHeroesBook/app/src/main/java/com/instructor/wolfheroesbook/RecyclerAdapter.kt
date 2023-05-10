@@ -36,7 +36,13 @@ class RecyclerAdapter (val alfalarListesi: ArrayList<String>,val kahramanGorsell
         holder.itemView.setOnClickListener {
             val intent= Intent(holder.itemView.context,TanitimActivity::class.java)
             intent.putExtra("kahramaninIsmi",alfalarListesi.get(position))
+            //Intentle kucuk veriler gonderilir/ 400-500kb buyuk veri sayilir
+
+            val singleton=SingletonClass.SecilenKahraman
+            singleton.gorsel=kahramanGorselleri.get(position)
             holder.itemView.context.startActivity(intent)
+
+
         }
     }
 

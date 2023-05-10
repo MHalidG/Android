@@ -18,6 +18,11 @@ class TanitimActivity : AppCompatActivity() {
         val secilanKahraman=intent.getStringExtra("kahramaninIsmi")
         binding.textView.text=secilanKahraman
 
+        val secilenKahraman=SingletonClass.SecilenKahraman
+        val secilenGorsel=secilenKahraman.gorsel
+        binding.imageView.setImageBitmap(secilenGorsel)
+
+
 
 
     }
