@@ -1,9 +1,11 @@
 package com.instructor.wolfheroesbook
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.instructor.wolfheroesbook.databinding.RecyclerRowBinding
 
@@ -14,15 +16,14 @@ class RecyclerAdapter (val alfalarListesi: ArrayList<String>,val kahramanGorsell
 
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlfalarVH {//2.adim
         //Inflater,LayoutInflater,MenuInflater
         //xml baglarken Inflater kullaniyoruz
        binding=RecyclerRowBinding.inflate(LayoutInflater.from(parent.context))
-        val itemView=binding.root
+        var itemView=binding.root
 
        // val itemView=LayoutInflater.from(parent.context).inflate(R.layout.recycler_row,parent,false)
-       return AlfalarVH(itemView)
+       return AlfalarVH(itemView as LinearLayout)
     }
 
     override fun getItemCount(): Int {//1.adim
@@ -32,6 +33,11 @@ class RecyclerAdapter (val alfalarListesi: ArrayList<String>,val kahramanGorsell
 
     override fun onBindViewHolder(holder: AlfalarVH, position: Int) {//3.adim
        binding.recyclerViewTextView.text=alfalarListesi.get(position)
+        holder.itemView.setOnClickListener {
+            val intent= Intent(holder.itemView.context,TanitimActivity::class.java)
+            intent.putExtra("kahramaninIsmi",alfalarListesi.get(position))
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
 
