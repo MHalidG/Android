@@ -20,7 +20,7 @@ class TarifFragment : Fragment(R.layout.fragment_tarif) {
 
     var secilenGorsel: Uri?=null
     var secilenBitmap: Bitmap?=null
-    lateinit var view: FragmentTarifBinding
+    lateinit var viewW: FragmentTarifBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +30,13 @@ class TarifFragment : Fragment(R.layout.fragment_tarif) {
     }
     fun kaydet(view : View){
         //Sqlite Kaydet
+        val yemekIsmi=viewW.yemekIsmiText.text.toString()
+        val yemekMalzemeleri=viewW.yemekMalzemeText.text.toString()
+
+        if(secilenBitmap!=null){
+            val kucukBitmap=kucukBitmapOlustur(secilenBitmap!!,300)
+        }
+
     }
 
     fun gorselSec(view:View){
@@ -74,7 +81,7 @@ class TarifFragment : Fragment(R.layout.fragment_tarif) {
                             val source =ImageDecoder.createSource(it.contentResolver, secilenGorsel!!)
                             secilenBitmap=ImageDecoder.decodeBitmap(source)
 
-                            view.imageView2.setImageBitmap(secilenBitmap)
+                            viewW.imageView2.setImageBitmap(secilenBitmap)
                         }else{
 secilenBitmap=MediaStore.Images.Media.getBitmap(it.contentResolver,secilenGorsel)
                         }
@@ -89,4 +96,30 @@ secilenBitmap=MediaStore.Images.Media.getBitmap(it.contentResolver,secilenGorsel
 
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+    fun kucukBitmapOlustur(kullanicininSectigiBitmap: Bitmap, maximumBoyut : Int): Bitmap {
+
+        var width=kullanicininSectigiBitmap.width
+        var height=kullanicininSectigiBitmap.height
+
+        val bitmapOrani:Double=width.toDouble()/height.toDouble()
+
+        if(bitmapOrani>1){
+            //Gorsel Yatay
+            width=maximumBoyut
+            val kisaltilmisHeight=width/bitmapOrani
+            height=kisaltilmisHeight.toInt()
+        }else{
+            //Gorsel Dikey
+            height=maximumBoyut
+            val kisaltilmisWidth=height*bitmapOrani
+            width=kisaltilmisWidth.toInt()
+        }
+
+
+        return Bitmap.createScaledBitmap(kullanicininSectigiBitmap,width,height,true,)
+
+    }
+
+
 }
