@@ -2,6 +2,7 @@ package com.instructor.yemektarifleriprogrami
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -14,7 +15,9 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.instructor.yemektarifleriprogrami.databinding.FragmentTarifBinding
+import java.io.ByteArrayOutputStream
 import java.lang.Exception
+import kotlin.Exception
 
 class TarifFragment : Fragment(R.layout.fragment_tarif) {
 
@@ -35,6 +38,30 @@ class TarifFragment : Fragment(R.layout.fragment_tarif) {
 
         if(secilenBitmap!=null){
             val kucukBitmap=kucukBitmapOlustur(secilenBitmap!!,300)
+            val outputStream=ByteArrayOutputStream()
+            kucukBitmap.compress(Bitmap.CompressFormat.PNG,50,outputStream)
+
+            val byteDizisi=outputStream.toByteArray()
+            try {
+                context?.let {
+                    val db=it.openOrCreateDatabase("Yemekler", Context.MODE_PRIVATE,null)
+                    db.execSQL("CREATE TABLE IF NOT EXISTS yemekler (id INTEGER PRIMARY KEY, yemekIsmi VARCHAR, yemekMalzmemesi VARCHAR, gorsel BLOB)")
+
+
+                    val sqlString="INSERT INTO Yemekler(yemekIsmi, yemekMalzemesi,gorsel) VALUES(?, ?, ?)"
+                    val statement=db.compileStatement(sqlString)
+                    //sqlString icerisindek' uc soru isareti 1,2,3, olarak index numarasi alir
+                    //Asagida her indeks numarasi yerine ne yazilacagi verildi parantez icinde/ Statement statik sql sorgusu yazmaya yaradi
+                    statement.bindString(1,yemekIsmi)
+                    statement.bindString(2,yemekMalzemeleri)
+                    statement.bindBlob(3,byteDizisi)
+                    statement.execute()
+
+                }
+               }catch (e:Exception){
+                e.printStackTrace()
+            }
+
         }
 
     }
