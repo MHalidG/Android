@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -14,9 +15,9 @@ import android.provider.MediaStore
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.instructor.yemektarifleriprogrami.databinding.FragmentTarifBinding
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
 import kotlin.Exception
 
 class TarifFragment : Fragment(R.layout.fragment_tarif) {
@@ -27,10 +28,68 @@ class TarifFragment : Fragment(R.layout.fragment_tarif) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*button.setOnClickListener{
+        viewW.kaydetButton.setOnClickListener{
      kaydet(it)
-     }*/
+     }
+
+        viewW.imageView2.setOnClickListener{
+            gorselSec(it)
+        }
+        arguments?.let{
+            var gelenBilgi=TarifFragmentArgs.fromBundle(it).bilgi
+            if(gelenBilgi.equals("menudengeldim")){
+                //Yeni bir yemek eklemeye geldi
+                viewW.yemekIsmiText.setText("")
+                viewW.yemekMalzemeText.setText("")
+            viewW.kaydetButton.visibility=View.VISIBLE
+                val gorselSecmeArkaPlani=BitmapFactory.decodeResource(context?.resources,R.drawable.adsiz)
+                viewW.imageView2.setImageBitmap(gorselSecmeArkaPlani)
+
+            }else{
+                //daha once olusturulan yemegi gormeye geldi
+
+
+                viewW.kaydetButton.visibility=View.INVISIBLE
+
+                val secilenId=TarifFragmentArgs.fromBundle(it).id
+
+                context?.let{
+                    try {
+                        val db=it.openOrCreateDatabase("Yemekler",Context.MODE_PRIVATE,null)
+                        val cursor=db.rawQuery("SELECT * FROM yemekler Where id= ?", arrayOf(secilenId.toString()))
+
+                        val yemekIsmiIndex=cursor.getColumnIndex("yemekIsmi")
+                        val yemekMalzemeIndex=cursor.getColumnIndex("yemekMalzemesi")
+                        val yemekGorsel=cursor.getColumnIndex("gorsel")
+
+                        while (cursor.moveToNext()){
+                            viewW.yemekIsmiText.setText(cursor.getString(yemekIsmiIndex))
+                            viewW.yemekMalzemeText.setText(cursor.getString(yemekMalzemeIndex))
+                            val byteDizisi=cursor.getBlob(yemekGorsel)
+                            val bitmap=BitmapFactory.decodeByteArray(byteDizisi,0,byteDizisi.size)
+                            viewW.imageView2.setImageBitmap(bitmap)
+                        }
+                    }catch (e:Exception){
+                        e.printStackTrace()
+                    }
+
+
+                }
+
+
+            }
+
+        }
+
     }
+
+
+
+
+
+
+
+
     fun kaydet(view : View){
         //Sqlite Kaydet
         val yemekIsmi=viewW.yemekIsmiText.text.toString()
@@ -61,6 +120,8 @@ class TarifFragment : Fragment(R.layout.fragment_tarif) {
                }catch (e:Exception){
                 e.printStackTrace()
             }
+            val action=TarifFragmentDirections.actionTarifFragmentToListeFragment()
+            Navigation.findNavController(view).navigate(action)
 
         }
 
